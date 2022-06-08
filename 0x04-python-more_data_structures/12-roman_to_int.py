@@ -1,13 +1,25 @@
 #!/usr/bin/python3
-# 102-complex_delete.py
-
-
-def complex_delete(a_dictionary, value):
-    """Delete keys with a specific value in a dictionary."""
-    while value in a_dictionary.values():
-        for k, v in a_dictionary.items():
-            if v == value:
-                del a_dictionary[k]
-                break
-
-    return (a_dictionary)
+def roman_to_int(roman_string):
+    if roman_string is None or type(roman_string) is not str:
+        return (0)
+    roman_dictionary = {
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000
+    }
+    roman_list = list(roman_string.upper())
+    result = 0
+    prev = 0
+    for letter in roman_list:
+        if letter in roman_dictionary:
+            result += roman_dictionary[letter]
+            if roman_dictionary[letter] > prev:
+                result -= prev * 2
+            prev = roman_dictionary[letter]
+        else:
+            return (0)
+    return (result)
