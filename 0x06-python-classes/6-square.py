@@ -59,12 +59,12 @@ class Square:
             return
         for i in range(self.__position[1]):
             print()
-OAOAOA        for j in range(self.__size):
-OAOAOA            print("".join([" " for k in range(self.__position[0])]), end="")
+        for j in range(self.__size):
+            print("".join([" " for k in range(self.__position[0])]), end="")
             print("".join(["#" for l in range(self.__size)]))
-OAOAOAOAOAOA
+
     @property
-OAOAOA    def position(self):
+    def position(self):
         """getter of __position
         Returns:
             The position of the square in 2D space
@@ -84,4 +84,4 @@ class Square:
            type(value[1]) is not int or value[1] < 0:
             raise TypeError("position must be a tuple of 2 positive integers")
         else:
-OAOAOA            self.__position = value
+            self.__position = value
