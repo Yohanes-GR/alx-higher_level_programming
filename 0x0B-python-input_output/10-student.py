@@ -1,42 +1,29 @@
 #!/usr/bin/python3
-'''task 14 module'''
-
-from sys import stdin
-
-status_codes = {
-        '200': 0,
-        '301': 0,
-        '400': 0,
-        '401': 0,
-        '403': 0,
-        '404': 0,
-        '405': 0,
-        '500': 0
-        }
-
-total_size = i = 0
+'''task 10 module'''
 
 
-def printer():
-    '''this function prints the statistics'''
-    print(f'File size: {total_size}')
-    for key, value in sorted(status_codes.items()):
-        if value > 0:
-            print('{:s}: {:d}'.format(key, value))
+class Student:
+    '''student class'''
+    def __init__(self, first_name, last_name, age):
+        '''Initialization of the student object'''
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
 
-
-try:
-    for line in stdin:
-        splitted_line = line.split()
-        if len(splitted_line) >= 2:
-            status = splitted_line[-2]
-            total_size += int(splitted_line[-1])
-            if status in status_codes:
-                status_codes[status] += 1
-        i += 1
-
-        if i % 10 == 0:
-            printer()
-    printer()
-except KeyboardInterrupt as e:
-    printer()
+    def to_json(self, attrs=None):
+        '''return a dictionary representation of a Student instance
+        If attrs is a list of strings, only attribute names contained
+        in this list must be retrieved.
+        Otherwise, all attributes must be retrieved
+        '''
+        try:
+            for attr in attrs:
+                if type(attr) is not str:
+                    return self.__dict__
+        except Exception:
+            return self.__dict__
+        my_dict = dict()
+        for key, value in self.__dict__.items():
+            if key in attrs:
+                my_dict[key] = value
+        return my_dict
